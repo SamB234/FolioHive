@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Uploader</title>
+    <link rel="stylesheet" href="../bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/html/custom.css">
+    <script src="../bootstrap/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <header>
+        <img src="/html/Images/FolioBase.png" width=100>
+        <div style="flex-grow: 2;"></div>
+        <button type="button" 
+        id="uploadBtn"
+        class="btn btn-primary upload-btn">Upload file</button>    
+    </header>
+    <div class="container">
+
+        <h2>FolioHive</h2>
+
+        <div class="search-container">
+            <input type="text" 
+            placeholder="Enter a search term"
+            id="searchBar"
+            class="searchbar form-control" name="" id="">
+            <button type="button" 
+            id="searchBtn"
+            class="btn btn-primary">Search</button>    
+        </div>
+
+        <div id="uploadTab" class="card actionCard" style="display: none;">
+            <h6 class="card-title">Upload a file</h6> 
+            <p class="card-text">
+                Enter your name and select a file to upload.
+            </p>
+            
+            <input type="text" 
+            placeholder="First name"
+            class="formField form-control" name="" id="firstname"/>
+            <input type="text" 
+            placeholder="Last name"
+            class="formField form-control" name="" id="lastname"/>
+            <input type="text" 
+            placeholder="Document title"
+            class="formField form-control" name="" id="dtitle"/>
+            <input type="file" accept=".pdf"
+            class="form-control-file formField" id="file">
+
+            <div>
+                <button id="upload" type="button" class="btn btn-primary submitBtn">Upload</button>    
+            </div>
+        </div>
+
+        <div id="searchTab" class="card actionCard" style="display: none;">
+            <h6 class="card-title">Search results</h6>
+            <div id="results"></div>
+
+        </div>
+
+        <div id="viewerTab" class="card viewerCard" style="display: none;">
+            <div class="card-body">
+                <h6 id="fileName" class="card-title">File name</h6>
+                <p id="ownerName" class="card-text">By: First name, Last name</p>
+                <div style="display: flex;">
+                    <button type="button" 
+                    id="prevPage"
+                    class="btn btn-primary btn-sm" 
+                    style="margin-right: 5px;"
+                    >Previous page</button>
+
+                    <button type="button" 
+                    id="nextPage"
+                    class="btn btn-primary btn-sm"
+                    >Next page</button>    
+                    <div style="flex-grow: 2;"></div>
+                    <span >Page: 
+                        <span id="pageNum">-</span> of 
+                        <span id="pageTotal">-</span>
+                    </span>
+                </div>
+
+                <canvas id="pdfRenderer" style="border: 1px solid black;">
+                </canvas>
+    
+            </div>
+
+        </div>
+
+
+    </div>
+</body>
+
+<style>
+    .resultRow{
+        display: flex;
+        align-items: center;
+        border: solid rgb(211, 211, 211);
+        border-width: 2px 0 0 0 ;
+        margin: 5px 0 10px 0px;
+    }
+
+    .searchbar{
+        display:inline;
+        flex-shrink: 1;
+    }
+
+    .upload-btn{
+    }
+
+    header{
+        width: 100%;
+        padding: 20px;
+        display: flex;
+    }
+
+    .formField{
+        width: 15rem;
+        margin: 5px 0;
+    }
+
+    .actionCard{
+        width: 500px;
+        max-width: 90vw;
+        margin-top: 30px;
+        padding: 10px;
+        text-align: left;
+    }
+
+    .viewerCard{
+        width: 90vw;
+        max-width: 600px;
+        margin-top: 30px;
+        padding: 10px;
+        text-align: left;
+    }
+
+    .submitBtn{
+        margin: 15px 0;
+    }
+
+    .search-container{
+        display: flex;
+        margin-top: 20px;  
+        width: 500px; 
+        max-width: 90vw; 
+    }
+
+    .container{
+        width: 100vw;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    #pdfRenderer{
+        margin-top: 10px;
+        width: 100%;
+    }
+</style>
+
+<script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
+
+<script src="../js/viewer.js"></script>
+
+<script src="../js/navigation.js"></script>
+<script src="../js/fetcher.js"></script>
+
+</html>
